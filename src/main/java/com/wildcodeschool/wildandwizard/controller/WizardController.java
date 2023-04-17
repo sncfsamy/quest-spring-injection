@@ -2,6 +2,9 @@ package com.wildcodeschool.wildandwizard.controller;
 
 import com.wildcodeschool.wildandwizard.entity.Wizard;
 import com.wildcodeschool.wildandwizard.repository.WizardRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,21 +14,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class WizardController {
-
-    private WizardRepository repository = new WizardRepository();
+    @Autowired
+    @Qualifier("wizardRepository")
+    private WizardRepository repository;
 
     @GetMapping("/wizards")
     public String getAll(Model model) {
-
         model.addAttribute("wizards", repository.findAll());
-
         return "wizards";
     }
 
     @GetMapping("/wizard")
-    public String getWizard(Model model,
-                            @RequestParam(required = false) Long id) {
-
+    public String getWizard(Model model, @RequestParam(required = false) Long id) {
         Wizard wizard = new Wizard();
         if (id != null) {
             wizard = repository.findById(id);

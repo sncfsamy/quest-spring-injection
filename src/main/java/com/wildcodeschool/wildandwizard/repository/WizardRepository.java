@@ -7,17 +7,21 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
+@Repository
 public class WizardRepository implements WizardDao {
 
     private static List<Wizard> wizards = new ArrayList<>(
-            Arrays.asList(
-                    new Wizard(1L, "Harry", "Potter", new Date(80, 6, 31), "London", "", false)
-            )
+        Arrays.asList(
+            new Wizard(1L, "Harry", "Potter", new Date(80, 6, 31), "London", "", false),
+            new Wizard(2L, "Hermione", "Granger", new Date(80, 3, 7), "Chépas", "", false),
+            new Wizard(3L, "Ron", "Weasley", new Date(80, 8, 12), "Nonplus", "", false)
+        )
     );
 
     @Override
     public Wizard save(Wizard wizard) {
-
         wizard.setId((long) (wizards.size() + 1));
         wizards.add(wizard);
         return wizard;
