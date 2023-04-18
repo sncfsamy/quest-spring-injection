@@ -1,7 +1,7 @@
 package com.wildcodeschool.wildandwizard.controller;
 
 import com.wildcodeschool.wildandwizard.entity.Wizard;
-import com.wildcodeschool.wildandwizard.repository.WizardRepository;
+import com.wildcodeschool.wildandwizard.repository.WizardDao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class WizardController {
     @Autowired
     @Qualifier("wizardRepository")
-    private WizardRepository repository;
+    private WizardDao repository;
 
     @GetMapping("/wizards")
     public String getAll(Model model) {
